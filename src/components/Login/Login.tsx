@@ -7,8 +7,8 @@ import { loginData } from "../../mock/mockdata"
 
 const LoginPage = () => {
     const { login, user } = useContext(UserContext);
-    const [email, setEmail] = useState("mominnawaf@gmail.com");
-    const [password, setPassword] = useState("123456");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [error, setError] = useState(false);
 
