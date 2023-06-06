@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/system';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Add, Delete, Check, AccountTreeOutlined } from '@mui/icons-material';
+import { Add, Delete, Check, AccountTreeOutlined, Undo } from '@mui/icons-material';
 import NavBar from '../NavBar/NavBar';
 import classes from './Dashboard.module.scss'
 
@@ -115,8 +115,8 @@ const DashboardPage = () => {
       </div>
       <List>
         {todos.map((todo) => (
-          <>
-            <ListItem key={todo.id} sx={{ backgroundColor: todo.isCompleted ? '#e0e0e0' : '' }}>
+          <div key={todo.id} className={classes.TodoContainer}>
+            <ListItem sx={{ backgroundColor: todo.isCompleted ? '#e0e0e0' : '' }}>
               <ListItemText
                 primary={todo.title}
                 style={{
@@ -133,7 +133,10 @@ const DashboardPage = () => {
                 <IconButton
                   onClick={() => handleCompleteTodo(todo.id)}
                 >
-                  <Check />
+                  {
+                    todo.isCompleted ? (<Undo />) : (<Check />)
+                  }
+
                 </IconButton>
                 <IconButton
                   onClick={() => handleDeleteTodo(todo.id)}
@@ -146,7 +149,7 @@ const DashboardPage = () => {
               todo.subTasks && todo.subTasks.length > 0 && (
                 <List sx={{ marginLeft: 4, marginRight: 4 }}>
                   {todo.subTasks.map((subTask) => (
-                    <ListItem key={subTask.id} sx={{ backgroundColor: subTask.isCompleted ? '#e0e0e0' : ''}}>
+                    <ListItem key={subTask.id} sx={{ backgroundColor: subTask.isCompleted ? '#e0e0e0' : '' }}>
                       <AccountTreeOutlined sx={{ marginRight: 1 }} />
                       <ListItemText
                         primary={subTask.title}
@@ -159,7 +162,9 @@ const DashboardPage = () => {
                         <IconButton
                           onClick={() => handleCompleteSubTodo(todo.id, subTask.id)}
                         >
-                          <Check />
+                          {
+                            subTask.isCompleted ? (<Undo />) : (<Check />)
+                          }
                         </IconButton>
                         <IconButton
                           onClick={() => handleDeleteSubTodo(todo.id, subTask.id)}
@@ -172,7 +177,7 @@ const DashboardPage = () => {
                 </List>
               )
             }
-          </>
+          </div>
         ))}
       </List>
       <Dialog

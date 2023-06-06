@@ -34,17 +34,17 @@ export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
         title: "This is a sample todo",
         isCompleted: false,
         subTasks: [{
-            id: Date.now().toString(),
+            id: "1",
             title: "This is a sample sub task",
             isCompleted: false
         },
         {
-            id: Date.now().toString(),
+            id: "2",
             title: "This is a sample sub task 2",
             isCompleted: false
         },
         {
-            id: Date.now().toString(),
+            id: "3",
             title: "This is a sample sub task 3",
             isCompleted: true
         }
